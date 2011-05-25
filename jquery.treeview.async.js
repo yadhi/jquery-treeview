@@ -10,7 +10,7 @@
  *   http://www.gnu.org/licenses/gpl.html
  *
  * Revision: $Id$
- *
+ * 
  */
 
 ;(function($) {
@@ -38,6 +38,23 @@ function load(settings, root, child, container) {
 				$.each(this.children, createNode, [branch])
 			}
 		}
+		
+		// $("selector").data("treeviewData").objectKey
+		if (this.metadata) {
+			current.children("span").data("treeviewData", this.metadata);
+		}
+		// json 
+		// [ 
+		// 		{
+		//			"text" : "the text", 
+		// 			"id" : "attr id",
+		//			"classes" : "css-class",
+		//			"expanded" : true || false,
+		//			"hasChildren" : true || false,
+		//			"children" : [ {}, {} ]	// array of children tree,
+		//			"metadata" : {} // object to call with $("selector").data("treeviewData").objectKey
+		//		} 
+		// ]
 	}
 	$.ajax($.extend(true, {
 		url: settings.url,
